@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#111318">
+  <title>Planarity</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">PLANARITY</div>
+    <div class="stats">
+      <label>Vertices <input id="vertexCount" type="number" min="4" max="100" step="1" value="20"></label>
+      <span>Time <b id="timer">0.0</b></span>
+      <span>Moves <b id="moves">0</b></span>
+    </div>
+    <div class="actions">
+      <button id="resetBtn">Reset</button>
+      <button id="newBtn">New Puzzle</button>
+      <button id="themeBtn" aria-label="Toggle light/dark mode">Light</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="status" class="status" aria-live="polite"></div>
+    <section id="boardWrap">
+      <svg id="board" role="application" aria-label="Planarity graph puzzle">
+        <g id="world">
+          <g id="edges"></g>
+          <g id="vertices"></g>
+        </g>
+      </svg>
+      <div class="zoom">
+        <button id="zoomOut" aria-label="Zoom out">−</button>
+        <button id="zoomReset" aria-label="Reset zoom">100%</button>
+        <button id="zoomIn" aria-label="Zoom in">+</button>
+      </div>
+      <div id="clearOverlay" class="clear-overlay" hidden>
+        <div class="clear-title">CLEAR</div>
+        <div><span id="clearTime">0.0</span>s · <span id="clearMoves">0</span> moves</div>
+        <button id="overlayNew">New Puzzle</button>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
