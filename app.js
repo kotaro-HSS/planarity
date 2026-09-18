@@ -218,8 +218,8 @@ async function newPuzzle() {
   const check=await testPlanarity(n,state.edges);
   if(!check.planar) throw new Error('Generated graph failed the Boyer-Myrvold planarity test.');
   const base=layoutPositions(n);
-  state.initialPositions=base.map(p=>({...p}));
   state.positions=scramblePositions(base,rng);
+  state.initialPositions=state.positions.map(p=>({...p}));
   state.panX=0; state.panY=0; state.zoom=1;
   state.moves=0; state.startedAt=null; state.elapsed=0; state.solved=false;
   timerEl.textContent='0.0'; movesEl.textContent='0'; clearOverlay.hidden=true;
@@ -292,11 +292,6 @@ if(localStorage.getItem('planarity-theme')==='light'){
   document.getElementById('themeBtn').textContent='Dark';
 }
 window.addEventListener('resize',()=>{
-  if(!state.startedAt && state.initialPositions.length) {
-    const base=layoutPositions(state.n);
-    state.initialPositions=base.map(p=>({...p}));
-    state.positions=base.map(p=>({...p}));
-  }
   render();
 });
 newPuzzle().catch(err=>{statusEl.textContent=err.message;console.error(err);});
